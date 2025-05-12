@@ -4,7 +4,7 @@ import { Button, Container, Typography, Box } from '@mui/material'
 
 export default function Home() {
   const handleLogin = () => {
-    window.location.href = 'http://localhost:3000/upload'; // cambia la URL si quieres
+    window.location.href = 'http://localhost:3000/login'; 
   };
 
   return (
