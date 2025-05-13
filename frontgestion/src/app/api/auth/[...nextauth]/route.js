@@ -1,3 +1,4 @@
+
 import NextAuth from "next-auth";
 import AzureADProvider from "next-auth/providers/azure-ad";
 import { NextResponse } from "next/server";
