@@ -42,7 +42,7 @@ export default function LoginPage() {
             fontSize: "1rem",
           }}
           onClick={() =>
-            signIn("azure-ad", { callbackUrl: "http://localhost:3000/upload" })
+            signIn("azure-ad", { callbackUrl: "http://localhost:3000/inicio" })
           }
         >
           Iniciar sesión con Microsoft
