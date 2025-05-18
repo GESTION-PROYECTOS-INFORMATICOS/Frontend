@@ -21,6 +21,9 @@ export default function RootLayout({ children }) {
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 Mi Aplicación
               </Typography>
+              <Button color="inherit" onClick={() => window.location.href = "/inicio"}>
+                Inicio
+              </Button>
               <Button color="inherit" onClick={() => signOut({ callbackUrl: "/login" })}>
                 Cerrar sesión
               </Button>
