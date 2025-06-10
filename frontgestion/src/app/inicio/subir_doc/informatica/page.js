@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from "react";
-import { Container, Typography, MenuItem, Select, FormControl, InputLabel, Button } from "@mui/material";
+import { Container, Typography, MenuItem, Select, FormControl, InputLabel, Button, Stack } from "@mui/material";
 import UploadDialog from "../../../../../components/UploadDialog";
 import { fetchMallas, fetchAsignaturas } from "../../../../../services/apiService";
 
@@ -12,6 +12,15 @@ export default function Informatica() {
   const [asignaturas, setAsignaturas] = useState([]);
   const [asignaturaSeleccionada, setAsignaturaSeleccionada] = useState("");
   const [openDialog, setOpenDialog] = useState(false);
+
+  const handleOtroBoton1 = () => {
+  console.log('Otro Botón 1 clickeado');
+    };
+
+    const handleOtroBoton2 = () => {
+      console.log('Otro Botón 2 clickeado');
+    };
+
 
   useEffect(() => {
     fetchMallas()
@@ -90,10 +99,18 @@ export default function Informatica() {
       )}
 
       {mallaSeleccionada && semestreSeleccionado !== 0 && asignaturaSeleccionada && (
-        <Button variant="contained" color="primary" sx={{ mt: 4 }} onClick={() => setOpenDialog(true)}>
-          Subir Documento
+      <Stack direction="row" spacing={2} sx={{ mt: 4 }}>
+        <Button variant="contained" color="primary" onClick={() => setOpenDialog(true)}>
+          Subir documento existente 
         </Button>
-      )}
+        <Button variant="contained" color="secondary" onClick={handleOtroBoton1}>
+          Realizar solicitud
+        </Button>
+        <Button variant="contained" color="success" onClick={handleOtroBoton2}>
+          Arbol de versiones
+        </Button>
+      </Stack>
+    )}
 
       <UploadDialog open={openDialog} onClose={() => setOpenDialog(false)} />
     </Container>
