@@ -85,16 +85,17 @@ export default function Informatica() {
         <FormControl fullWidth sx={{ mt: 3 }}>
           <InputLabel>Asignatura</InputLabel>
           <Select
-            value={asignaturaSeleccionada}
+            value={asignaturaSeleccionada || ""}
             label="Asignatura"
             onChange={(e) => setAsignaturaSeleccionada(e.target.value)}
           >
             {asignaturas.map((asig) => (
-              <MenuItem key={asig.id} value={asig.id}>
+              <MenuItem key={asig.codigo} value={asig.codigo}>
                 {asig.nombre}
               </MenuItem>
             ))}
           </Select>
+
         </FormControl>
       )}
 
