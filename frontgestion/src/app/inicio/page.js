@@ -1,6 +1,8 @@
 'use client';
 import React from "react";
 import { useRouter } from "next/navigation";
+import SearchIcon from '@mui/icons-material/Search';
+
 import { 
   Card, 
   CardContent, 
@@ -27,6 +29,11 @@ export default function Inicio() {
       ruta: "/inicio/subir_doc", 
       icon: <DescriptionIcon sx={{ fontSize: 70, color: "#388e3c" }} /> 
     },
+     {
+  nombre: "Filtrar programas",
+  ruta: "/inicio/filtrar_P",
+  icon: <SearchIcon sx={{ fontSize: 70, color: "#1976d2" }} />
+}
   ];
 
   return (

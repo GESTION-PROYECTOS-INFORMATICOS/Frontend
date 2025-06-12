@@ -21,3 +21,9 @@ export const uploadDocumento = async (file) => {
 
   return await response.json();
 };
+
+export const fetchPdfs = async () => {
+  const response = await fetch("http://localhost:5136/api/pdf/get-all");
+  if (!response.ok) throw new Error("Error al obtener PDFs");
+  return await response.json();
+};
