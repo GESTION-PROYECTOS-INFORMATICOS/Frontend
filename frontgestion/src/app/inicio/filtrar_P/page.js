@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Typography, List, ListItem, ListItemText, Divider, CircularProgress, Alert } from "@mui/material";
 import { fetchPdfs } from "../../../../services/apiService";
+import PdfListItem from "./pdfListItem"; 
 
 export default function ListadoArchivos() {
   const [pdfs, setPdfs] = useState([]);
@@ -40,19 +41,14 @@ export default function ListadoArchivos() {
       {pdfs.length === 0 ? (
         <Typography>No hay archivos para mostrar.</Typography>
       ) : (
-        <List>
-          {pdfs.map((pdf) => (
-            <React.Fragment key={pdf.id || pdf._id}>
-              <ListItem>
-                <ListItemText
-                  primary={pdf.fileName || pdf.FileName}
-                  secondary={`Tipo: ${pdf.contentType || pdf.ContentType}`}
-                />
-              </ListItem>
-              <Divider />
-            </React.Fragment>
-          ))}
-        </List>
+          <List>
+        {pdfs.map((pdf) => (
+    <PdfListItem key={pdf.id || pdf._id} pdf={pdf} />
+  ))}
+      </List>
+
+
+
       )}
     </Container>
   );

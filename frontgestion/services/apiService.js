@@ -8,9 +8,11 @@ export const fetchAsignaturas = async (mallaId, semestre) => {
   return await response.json();
 };
 
-export const uploadDocumento = async (file) => {
+export const uploadDocumento = async (file, malla, asignatura) => {
   const formData = new FormData();
   formData.append("file", file);
+  formData.append("malla", malla);
+  formData.append("asignatura", asignatura);
 
   const response = await fetch("http://localhost:5136/api/pdf/upload", {
     method: "POST",
@@ -21,6 +23,7 @@ export const uploadDocumento = async (file) => {
 
   return await response.json();
 };
+
 
 export const fetchPdfs = async () => {
   const response = await fetch("http://localhost:5136/api/pdf/get-all");

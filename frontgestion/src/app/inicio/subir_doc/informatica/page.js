@@ -113,7 +113,12 @@ export default function Informatica() {
       </Stack>
     )}
 
-      <UploadDialog open={openDialog} onClose={() => setOpenDialog(false)} />
+      <UploadDialog 
+      open={openDialog} 
+      onClose={() => setOpenDialog(false)} 
+      mallaSeleccionada={mallaSeleccionada}
+      asignaturaSeleccionada={asignaturaSeleccionada}
+    />
     </Container>
   );
 }

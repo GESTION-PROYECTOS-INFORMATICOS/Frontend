@@ -2,7 +2,8 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Stack, Input
 import { useState } from "react";
 import { uploadDocumento } from "../services/apiService";
 
-export default function UploadDialog({ open, onClose }) {
+export default function UploadDialog({ open, onClose, mallaSeleccionada, asignaturaSeleccionada }) {
+
   const [file, setFile] = useState(null);
   const [uploadResult, setUploadResult] = useState("");
 
@@ -11,7 +12,7 @@ export default function UploadDialog({ open, onClose }) {
     if (!file) return alert("Por favor selecciona un archivo PDF.");
 
     try {
-      const result = await uploadDocumento(file);
+      const result = await uploadDocumento(file,mallaSeleccionada, asignaturaSeleccionada);
       setUploadResult(`Archivo subido con éxito. ID: ${result.id}`);
     } catch (err) {
       setUploadResult("Error al subir el archivo.");
