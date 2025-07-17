@@ -19,10 +19,14 @@ export const uploadDocumento = async (file, malla, asignatura) => {
     body: formData,
   });
 
-  if (!response.ok) throw new Error("Error al subir el archivo.");
+  if (!response.ok)   {
+    const text = await response.text(); // para loguear mejor el error real
+    throw new Error(`Error al subir el archivo: ${text}`);
+  }
 
   return await response.json();
 };
+
 
 
 export const fetchPdfs = async () => {
@@ -49,3 +53,20 @@ export const realizarSolicitud = async (file, requestReason, requestedBy) => {
 
   return await response.json();
 };
+
+export const fetchRequests = async () => {
+  const response = await fetch("http://localhost:5136/api/request/all");
+  if (!response.ok) throw new Error("No se pudieron obtener las solicitudes.");
+  return await response.json();
+};
+
+export const approveRequest = async (id) => {
+  const response = await fetch(`http://localhost:5136/api/request/${id}/approve`, { method: "PUT" });
+  if (!response.ok) throw new Error("Error al aprobar solicitud.");
+};
+
+export const rejectRequest = async (id) => {
+  const response = await fetch(`http://localhost:5136/api/request/${id}/reject`, { method: "PUT" });
+  if (!response.ok) throw new Error("Error al rechazar solicitud.");
+};
+
