@@ -30,3 +30,22 @@ export const fetchPdfs = async () => {
   if (!response.ok) throw new Error("Error al obtener PDFs");
   return await response.json();
 };
+
+export const realizarSolicitud = async (file, requestReason, requestedBy) => {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("requestReason", requestReason);
+  formData.append("requestedBy", requestedBy);
+
+  const response = await fetch("http://localhost:5136/api/request/with-document", {
+    method: "POST",
+    body: formData,
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(errorText || "Error al realizar solicitud.");
+  }
+
+  return await response.json();
+};
