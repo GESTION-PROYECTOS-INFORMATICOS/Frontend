@@ -17,7 +17,7 @@ export const authOptions = {
   ],
   callbacks: {
     async signIn({ user }) {
-      const allowedDomains = ["uv.cl", "alumnos.uv.cl"];
+      const allowedDomains = ["uv.cl", "alumnos.uv.cl","estudiantes.uv.cl"];
       const emailDomain = user.email?.split("@")[1];
       return allowedDomains.includes(emailDomain) ? true : "/unauthorized";
     },

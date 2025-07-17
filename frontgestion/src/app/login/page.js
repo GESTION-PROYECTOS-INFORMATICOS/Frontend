@@ -45,8 +45,30 @@ export default function LoginPage() {
             signIn("azure-ad", { callbackUrl: "http://localhost:3000/inicio" })
           }
         >
-          Iniciar sesión con Microsoft
+          Iniciar sesión como solicitador
         </Button>
+
+        <Button
+          variant="contained"
+          color="primary"
+          startIcon={<MicrosoftIcon/>}
+          sx={{
+            mt: 2,
+            bgcolor: "#1976d2",
+            color: "white",
+            '&:hover': { bgcolor: "#115293" },
+            borderRadius: 2,
+            paddingX: 3,
+            paddingY: 1.5,
+            fontSize: "1rem",
+          }}
+          onClick={() =>
+            signIn("azure-ad", { callbackUrl: "http://localhost:3000/coordinador" })
+          }
+        >
+          Iniciar sesión como aprobador
+        </Button>
+
       </Paper>
     </Box>
   );

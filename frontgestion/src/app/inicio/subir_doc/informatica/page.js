@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Typography, MenuItem, Select, FormControl, InputLabel, Button, Stack } from "@mui/material";
 import UploadDialog from "../../../../../components/UploadDialog";
+import SolicitudDialog from "../../../../../components/SolicitudDialog";
 import { fetchMallas, fetchAsignaturas } from "../../../../../services/apiService";
 
 export default function Informatica() {
@@ -12,10 +13,14 @@ export default function Informatica() {
   const [asignaturas, setAsignaturas] = useState([]);
   const [asignaturaSeleccionada, setAsignaturaSeleccionada] = useState("");
   const [openDialog, setOpenDialog] = useState(false);
+  // Nuevo estado para mostrar el diálogo
+  const [openSolicitudDialog, setOpenSolicitudDialog] = useState(false);
+
 
   const handleOtroBoton1 = () => {
-  console.log('Otro Botón 1 clickeado');
-    };
+  setOpenSolicitudDialog(true);
+  };
+
 
     const handleOtroBoton2 = () => {
       console.log('Otro Botón 2 clickeado');
@@ -119,6 +124,13 @@ export default function Informatica() {
       mallaSeleccionada={mallaSeleccionada}
       asignaturaSeleccionada={asignaturaSeleccionada}
     />
+    <SolicitudDialog
+    open={openSolicitudDialog}
+    onClose={() => setOpenSolicitudDialog(false)}
+    mallaSeleccionada={mallaSeleccionada}
+    asignaturaSeleccionada={asignaturaSeleccionada}
+  />
+
     </Container>
   );
 }
