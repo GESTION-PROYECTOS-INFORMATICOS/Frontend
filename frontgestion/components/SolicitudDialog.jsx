@@ -3,7 +3,7 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Stack, Input
 import { useState } from "react";
 import { realizarSolicitud } from "../services/apiService";
 
-export default function SolicitudDialog({ open, onClose, mallaSeleccionada, asignaturaSeleccionada }) {
+export default function SolicitudDialog({ open, onClose, mallaSeleccionada, asignaturaSeleccionada, asignaturaNombre, semestreSeleccionado }) {
   const [file, setFile] = useState(null);
   const [requestReason, setRequestReason] = useState("");
   const [requestedBy, setRequestedBy] = useState("");
@@ -17,7 +17,13 @@ export default function SolicitudDialog({ open, onClose, mallaSeleccionada, asig
     }
 
     try {
-      const response = await realizarSolicitud(file, requestReason, requestedBy);
+      const response = await realizarSolicitud(file,
+      requestReason,
+      requestedBy,
+      mallaSeleccionada,
+      semestreSeleccionado,
+      asignaturaSeleccionada,  // código
+      asignaturaNombre   );
       setResult(response.message);
     } catch (err) {
       setResult("Error: " + err.message);

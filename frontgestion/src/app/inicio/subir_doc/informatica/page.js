@@ -128,8 +128,13 @@ export default function Informatica() {
     open={openSolicitudDialog}
     onClose={() => setOpenSolicitudDialog(false)}
     mallaSeleccionada={mallaSeleccionada}
+    semestreSeleccionado={semestreSeleccionado}
     asignaturaSeleccionada={asignaturaSeleccionada}
-  />
+    asignaturaNombre={
+      asignaturas.find(a => a.codigo === asignaturaSeleccionada)?.nombre || ""
+    }
+/>
+
 
     </Container>
   );
