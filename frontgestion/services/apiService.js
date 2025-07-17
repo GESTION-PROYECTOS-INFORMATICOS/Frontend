@@ -35,11 +35,23 @@ export const fetchPdfs = async () => {
   return await response.json();
 };
 
-export const realizarSolicitud = async (file, requestReason, requestedBy) => {
+export const realizarSolicitud = async (
+  file,
+  requestReason,
+  requestedBy,
+  malla,
+  semestre,
+  asignaturaCodigo,
+  asignaturaNombre
+) => {
   const formData = new FormData();
   formData.append("file", file);
   formData.append("requestReason", requestReason);
   formData.append("requestedBy", requestedBy);
+  formData.append("malla", malla);
+  formData.append("semestre", semestre);
+  formData.append("asignaturaCodigo", asignaturaCodigo);
+  formData.append("asignaturaNombre", asignaturaNombre);
 
   const response = await fetch("http://localhost:5136/api/request/with-document", {
     method: "POST",
