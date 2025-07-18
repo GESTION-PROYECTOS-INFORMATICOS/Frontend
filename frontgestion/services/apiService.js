@@ -19,6 +19,15 @@ export const uploadDocumento = async (file, malla, asignatura) => {
     body: formData,
   });
 
+  if (!response.ok) {
+    const text = await response.text(); // para loguear mejor el error real
+    throw new Error(`Error al subir el archivo: ${text}`);
+  }
+
+  return await response.json();
+
+
+
   if (!response.ok)   {
     const text = await response.text(); // para loguear mejor el error real
     throw new Error(`Error al subir el archivo: ${text}`);
