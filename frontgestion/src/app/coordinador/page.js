@@ -46,7 +46,18 @@ export default function CoordinadorPage() {
         <TableBody>
           {requests.map((req) => (
             <TableRow key={req.id}>
-              <TableCell>{req.documentId}</TableCell>
+              <TableCell>
+              <a
+                href={`http://localhost:5136/api/pdf/${req.documentId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+                style={{ textDecoration: 'underline', color: 'blue' }}
+              >
+                {req.documentId}
+              </a>
+            </TableCell>
+
               <TableCell>{req.requestReason}</TableCell>
               <TableCell>{req.requestedBy}</TableCell>
               <TableCell>{req.status}</TableCell>
