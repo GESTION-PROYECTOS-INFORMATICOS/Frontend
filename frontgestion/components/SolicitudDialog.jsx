@@ -1,13 +1,31 @@
 'use client';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Stack, Input, TextField, Alert } from "@mui/material";
-import { useState } from "react";
+import {
+  Dialog, DialogTitle, DialogContent, DialogActions,
+  Button, Stack, Input, TextField, Alert
+} from "@mui/material";
+import { useState, useEffect } from "react";
 import { realizarSolicitud } from "../services/apiService";
+import { useSession } from "next-auth/react";
 
-export default function SolicitudDialog({ open, onClose, mallaSeleccionada, asignaturaSeleccionada, asignaturaNombre, semestreSeleccionado }) {
+export default function SolicitudDialog({
+  open,
+  onClose,
+  mallaSeleccionada,
+  asignaturaSeleccionada,
+  asignaturaNombre,
+  semestreSeleccionado
+}) {
+  const { data: session } = useSession(); // ← obtenemos la sesión
   const [file, setFile] = useState(null);
   const [requestReason, setRequestReason] = useState("");
   const [requestedBy, setRequestedBy] = useState("");
   const [result, setResult] = useState("");
+
+  useEffect(() => {
+    if (session?.user?.name) {
+      setRequestedBy(session.user.name); // ← setear automáticamente el nombre
+    }
+  }, [session]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,13 +35,15 @@ export default function SolicitudDialog({ open, onClose, mallaSeleccionada, asig
     }
 
     try {
-      const response = await realizarSolicitud(file,
-      requestReason,
-      requestedBy,
-      mallaSeleccionada,
-      semestreSeleccionado,
-      asignaturaSeleccionada,  // código
-      asignaturaNombre   );
+      const response = await realizarSolicitud(
+        file,
+        requestReason,
+        requestedBy,
+        mallaSeleccionada,
+        semestreSeleccionado,
+        asignaturaSeleccionada,
+        asignaturaNombre
+      );
       setResult(response.message);
     } catch (err) {
       setResult("Error: " + err.message);
@@ -51,8 +71,8 @@ export default function SolicitudDialog({ open, onClose, mallaSeleccionada, asig
             <TextField
               label="Solicitado por"
               value={requestedBy}
-              onChange={(e) => setRequestedBy(e.target.value)}
               fullWidth
+              disabled // ← deshabilitado porque se autocompleta
             />
             <Button type="submit" variant="contained" disabled={!file}>
               Enviar Solicitud
