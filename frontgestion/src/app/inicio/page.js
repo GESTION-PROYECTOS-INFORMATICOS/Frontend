@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React from "react";
 import { useRouter } from "next/navigation";
 import SearchIcon from '@mui/icons-material/Search';
@@ -19,21 +19,11 @@ export default function Inicio() {
   const router = useRouter();
 
   const opciones = [
-    // { 
-    //   nombre: "Ingresar solicitud", 
-    //   ruta: "/inicio/solicitud", 
-    //   icon: <AddCircleOutlineIcon sx={{ fontSize: 70, color: "#1976d2" }} /> 
-    // },
-    { 
-      nombre: "Realizar solicitud", 
-      ruta: "/inicio/subir_doc", 
-      icon: <DescriptionIcon sx={{ fontSize: 70, color: "#388e3c" }} /> 
+    {
+      nombre: "Realizar solicitud de modificación",
+      ruta: "/inicio/subir_doc",
+      icon: <DescriptionIcon sx={{ fontSize: 70, color: "white" }} />
     },
-     {
-  nombre: "Filtrar programas",
-  ruta: "/inicio/filtrar_P",
-  icon: <SearchIcon sx={{ fontSize: 70, color: "#1976d2" }} />
-}
   ];
 
   return (
@@ -43,6 +33,7 @@ export default function Inicio() {
         align="center" 
         gutterBottom 
         fontWeight="bold"
+        sx={{ color: "#0b2545" }}
       >
         ¿Qué desea hacer?
       </Typography>
@@ -58,7 +49,7 @@ export default function Inicio() {
                 display: "flex", 
                 alignItems: "center", 
                 justifyContent: "center",
-                background: "linear-gradient(135deg, #f9f9f9 0%, #f1f1f1 100%)",
+                background: "linear-gradient(135deg, #0b2545 0%, #1e3c72 100%)",
                 transition: "all 0.3s ease-in-out", 
                 "&:hover": { 
                   transform: "translateY(-8px) scale(1.03)", 
@@ -86,6 +77,7 @@ export default function Inicio() {
                     component="div" 
                     align="center" 
                     fontWeight={600}
+                    sx={{ color: "white" }}
                   >
                     {opcion.nombre}
                   </Typography>

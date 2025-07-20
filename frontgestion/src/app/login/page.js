@@ -1,7 +1,7 @@
 "use client";
 import { signIn } from "next-auth/react";
 import { Box, Button, Typography, Paper } from "@mui/material";
-import MicrosoftIcon from '@mui/icons-material/Microsoft'; 
+import MicrosoftIcon from '@mui/icons-material/Microsoft';
 
 export default function LoginPage() {
   return (
@@ -11,65 +11,97 @@ export default function LoginPage() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        bgcolor: "#f5f5f5",
+        background: "linear-gradient(135deg, #0b2545 0%, #1e3c72 100%)",
+        padding: 2,
       }}
     >
-      <Paper
-        elevation={6}
-        sx={{
-          padding: 4,
-          borderRadius: 3,
-          textAlign: "center",
-          maxWidth: 400,
-          width: "90%",
-        }}
-      >
-        <Typography variant="h4" gutterBottom>
-          Inicia Sesión
-        </Typography>
-        <Button
-          variant="contained"
-          color="primary"
-          startIcon={<MicrosoftIcon/>}
+        <Paper
+          elevation={6}
           sx={{
-            mt: 2,
-            bgcolor: "#1976d2",
-            color: "white",
-            '&:hover': { bgcolor: "#115293" },
-            borderRadius: 2,
-            paddingX: 3,
-            paddingY: 1.5,
-            fontSize: "1rem",
+            paddingTop: 8,
+            paddingX: 5,
+            paddingBottom: 5,
+            borderRadius: 3,
+            textAlign: "center",
+            maxWidth: 600,
+            width: "95%",
+            border: "2px solid white",
           }}
-          onClick={() =>
-            signIn("azure-ad", { callbackUrl: "http://localhost:3000/inicio" })
-          }
         >
-          Iniciar sesión como solicitador
-        </Button>
+          <Typography
+            variant="h4"
+            gutterBottom
+            sx={{
+              color: "#0b2545",
+              fontFamily: "'Segoe UI', 'Roboto', 'Helvetica', sans-serif",
+              fontWeight: "bold",
+              letterSpacing: "0.5px",
+            }}
+          >
+            Bienvenido a la plataforma de modificación de plan de asignaturas
+          </Typography>
 
-        <Button
-          variant="contained"
-          color="primary"
-          startIcon={<MicrosoftIcon/>}
-          sx={{
-            mt: 2,
-            bgcolor: "#1976d2",
-            color: "white",
-            '&:hover': { bgcolor: "#115293" },
-            borderRadius: 2,
-            paddingX: 3,
-            paddingY: 1.5,
-            fontSize: "1rem",
-          }}
-          onClick={() =>
-            signIn("azure-ad", { callbackUrl: "http://localhost:3000/coordinador" })
-          }
-        >
-          Iniciar sesión como aprobador
-        </Button>
+          <Typography
+            variant="subtitle1"
+            sx={{
+              color: "#1e3c72",
+              fontWeight: 500,
+              marginBottom: 3,
+            }}
+          >
+            Inicia sesión con tu cuenta institucional
+          </Typography>
 
-      </Paper>
-    </Box>
+          <Button
+            variant="contained"
+            color="#0b2545"
+            startIcon={<MicrosoftIcon />}
+            sx={{
+              mt: 2,
+              backgroundColor: "transparent",
+              border: "2px solid #0b2545",
+              color: "#0b2545",
+              '&:hover': {
+                backgroundColor: "#0b2545",
+                color: "white"
+              },
+              borderRadius: 2,
+              paddingX: 3,
+              paddingY: 1.5,
+              fontSize: "1rem",
+            }}
+            onClick={() =>
+              signIn("azure-ad", { callbackUrl: "http://localhost:3000/inicio" })
+            }
+          >
+            Iniciar como miembro del comité
+          </Button>
+
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<MicrosoftIcon />}
+            sx={{
+              mt: 2,
+              backgroundColor: "transparent",
+              border: "2px solid #0b2545",
+              color: "#0b2545",
+              '&:hover': {
+                backgroundColor: "#0b2545",
+                color: "white"
+              },
+              borderRadius: 2,
+              paddingX: 3,
+              paddingY: 1.5,
+              fontSize: "1rem",
+            }}
+            onClick={() =>
+              signIn("azure-ad", { callbackUrl: "http://localhost:3000/coordinador" })
+            }
+          >
+            Iniciar como coordinador del comité
+          </Button>
+        </Paper>
+      </Box>
   );
 }
